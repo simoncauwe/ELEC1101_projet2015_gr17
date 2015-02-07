@@ -28,7 +28,7 @@
 \usepackage{mathrsfs}
 \usepackage{amsthm}
 %\usepackage{makeidx}
-%\usepackage{graphicx}
+\usepackage{graphicx}
 \usepackage{parskip}
 \setlength{\parindent}{15pt}
 
@@ -38,6 +38,57 @@
 \author{Groupe 17}
 \date{\today}
 \maketitle
+
+En lien avec le projet ELEC1101 de la majeure en électricité, il a été demandé de s'intéresser aux séries de Fourier ainsi qu'aux transformations non linaires. Les différentes questions posées à ce sujet constituent le premier problème autonome. Ce rapport tentera de donner réponse à celles-ci.
+
+\section{Signal triangulaire et série de Fourier}
+
+Pour commencer, définissons un signal triangulaire quelconque comme représenté sur la figure \ref{fig-trig}.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{signal_triangulaire2}
+\caption{Signaux triangulaires sur une période}
+\label{fig-trig}
+\end{center}
+\end{figure}
+
+Un tel signal quelconque peut ici être séparer en plusieurs segments de droites afin d'être décrit de manière analytique. Intéressons-nous pour ce faire au signal rouge, le plus général des deux. Il peut être décrit au moyen des équation suivantes:
+\begin{align}
+d_{1}(t) = \tan(\theta)*t + V_{min} + Q\\
+d_{2}(t) = -\tan(\theta)*t + V_{max} + Q - (V_{max}-V_{min})\\
+d_{3}(t) = \tan(\theta)*t + V_{min} + Q - 2*(V_{max}-V_{min})
+\label{}
+\end{align}
+
+\newpage
+Dans ces expressions on peut lier certains paramètres entre eux et on obtient, avec T la période:
+$$\tan(\theta) = \frac{2*(V_{max}-V_{min})}{T}$$
+$$d = \frac{Q}{\tan(\theta)}$$
+
+Une fois ces expressions établies, il est possible d'obtenir le développement en série de Fourier de ce signal. Pour ce faire il est nécessaire de calculer les différents coefficients de cette série en séparant le signal en 3 droites comme fait plus haut:
+$$
+\int_{0}^{T}{u(t) dt} =  \int_{0}^{\frac{T}{2}-d}{d_{1}(t) dt}+\int_{\frac{T}{2}-d}^{T-d}{d_{2}(t) dt}+\int_{T-d}^{T}{d_{3}(t) dt}
+$$
+
+En utilisant cette méthode on obtient:
+$$A_{0} = \frac{V_{max}+V_{min}}{2}$$
+$$A_{k} = \frac{2*(V_{max}-V_{min})}{\pi^{2}k^{2}}*\left[\cos \left(k\pi \frac{Q-2(V_{max}-V_{min})}{V_{max}-V_{min}} \right) -  \cos \left(k\pi \frac{Q-(V_{max}-V_{min})}{V_{max}-V_{min}} \right)\right]$$
+
+$$B_{k} = \frac{2*(V_{max}-V_{min})}{\pi^{2}k^{2}}*\left[\sin \left(k\pi \frac{Q-2(V_{max}-V_{min})}{V_{max}-V_{min}} \right) -  \sin \left(k\pi \frac{Q-(V_{max}-V_{min})}{V_{max}-V_{min}} \right)\right]$$
+
+Le signal triangulaire $u(t)$ de pulsation $\omega$ peut donc enfin s'écrire:
+\begin{align}
+u(t) = A_{0} + \sum_{k=1}^{\infty}{A_{k}\cos(k\omega t)} + \sum_{k=1}^{\infty}{B_{k}\sin(k\omega t)} 
+\label{serie-fourier}
+\end{align}
+
+Un choix judicieux de l'origine du temps permet de grandement simplifier ces expressions. En effet, placer le 0 sur un maximum ou un minimum du signal donne un signal pair. Le développement en série de Fourier ne contient alors que des termes paires, c'est à dire le terme constant ainsi que la série de cosinus. Avec les notations utilisées plus haut, une telle situation correspond à $Q=0$ et les coefficients deviennent:
+$$A_{0} = \frac{V_{max}+V_{min}}{2}$$
+$$A_{k} = \frac{4*(V_{max}-V_{min})}{\pi^{2}(2k-1)^{2}}$$
+$$B_{k} = 0$$
+
+
 
 
 \end{document}
