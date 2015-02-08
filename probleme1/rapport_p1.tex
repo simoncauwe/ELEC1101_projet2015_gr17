@@ -31,6 +31,7 @@
 \usepackage{graphicx}
 \usepackage{parskip}
 \setlength{\parindent}{15pt}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -88,6 +89,38 @@ $$A_{0} = \frac{V_{max}+V_{min}}{2}$$
 $$A_{k} = \frac{4*(V_{max}-V_{min})}{\pi^{2}(2k-1)^{2}}$$
 $$B_{k} = 0$$
 
+On se propose maintenant de simplifier l'expression \ref{serie-fourier} au moyen d'exponentielles complexes. Plus précisément on veut réécrire cette équation sous la forme:
+\begin{align}
+u(t) = \sum_{k= -\infty}^{\infty}{C_{k} \ e^{j k \omega t}}
+\label{serie-fourier-c}
+\end{align}
+
+Une remarque qui mérite d'être faite quant à cette expression concerne les bornes de la somme qui commencent ici à $-\infty$.
+
+Exprimons maintenant $C_{k}$ en fonction de $A_{k}$ et $B_{k}$. En identifiant les différents termes des expressions \ref{serie-fourier} et \ref{serie-fourier-c} on trouve:
+\begin{align}
+C_{k} = \frac{1}{2}(A_{k}-j \ B_{k})
+\label{coef-c1}
+\end{align}
+\begin{align}
+C_{-k} = \frac{1}{2}(A_{k}+j \ B_{k})
+\label{coef-c-2}
+\end{align}
+
+Ces coefficient s'expriment quant à eux comme:
+\begin{align}
+C_{k} = \frac{V_{max}-V_{min}}{\pi^{2}k^{2}} \left( e^{-j \ G_{2}} - e^{-j \ G_{1}}\right)\\
+C_{-k} = \frac{V_{max}-V_{min}}{\pi^{2}k^{2}} \left( e^{j \ G_{2}} - e^{j \ G_{1}}\right)
+\label{coef-c-dev}
+\end{align}
+
+Où $G_{1}$ et $G_{2}$ valent:
+$$G_{1} = k\pi \frac{Q-(V_{max} - V_{min})}{V_{max} - V_{min}}$$
+$$G_{2} = k\pi \frac{Q-2(V_{max} - V_{min})}{V_{max} - V_{min}}$$
+
+Au vu des équations \ref{coef-c1} et \ref{coef-c-2} on affirme facilement que $C_{-k} = C_{k}^{*}$.
+
+\section{Transformation non linéaire}
 
 
 
