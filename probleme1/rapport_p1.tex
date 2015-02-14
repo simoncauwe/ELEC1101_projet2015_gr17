@@ -122,6 +122,54 @@ Au vu des équations \ref{coef-c1} et \ref{coef-c-2} on affirme facilement que $C
 
 \section{Transformation non linéaire}
 
+Imaginons maintenant un circuit électrique effectuant une transformation non linéaire $y = h(x)$ sur son signal d'entrée. Cette transformation est connue sous la forme de son développement de Taylor jusqu'à l'ordre 3:
+$$h(x) \simeq a + bx + cx^{2} + dx$$
+
+Imaginons maintenant que $x(t)$ corresponde au signal triangulaire du point précédent. L'ordre 0 et 1 de cette transformation s'obtiennent trivialement. En revanche, les ordres supérieurs sont plus complexes.
+
+Commen\c cons par l'ordre 2 et prenons:
+$$x(t) = A_{0} + \sum_{k=1}^{\infty}{A_{k}\cos(k\omega t)} + \sum_{k=1}^{\infty}{B_{k}\sin(k\omega t)} $$
+
+Si on élève cette expression au carré on obtient toutes les paires de termes possibles avec des doubles sommes pour certains termes. On pourrait apparenter cela au produit cartésien de l'ensemble contenant les 2 coefficient du développement en série avec lui-même. C'est à dire:
+$$\left[\begin{array}{c}A_0 \\A_{k} \\B_{k}\end{array}\right]*\left[\begin{matrix}A_0 & A_{k} & B_{k}\end{matrix}\right]$$
+
+On obtient de cette façon tous les coefficient de $x^{2}(t)$. On peut aussi souligner le fait qu'un terme dépendant de $k$ est un ensemble et que le produit de 2 termes dépendants de $k$ est donné par le produit cartésien des 2 ensembles correspondants:
+$$A_{k}*A_{k} = A_{k_{1}}*A_{k_{2}}$$
+$$B_{k}*B_{k} = B_{k_{1}}*B_{k_{2}}$$
+$$A_{k}*B_{k} = B_{k}*A_{k} = A_{k_{1}}*B_{k_{2}}$$
+
+
+Une fois ces ensembles trouvés, les doubles sommes se calculent facilement de fa\c con numérique avec les indices $k_{1}$ et $k_{2}$ quand c'est nécessaire.
+ 
+Dans le cas d'un signal pair, les calculs se simplifient grandement pour donner:
+\begin{multline}
+x^{2}(t) = A_{0}^{2} + 2A_{0}\sum_{k=1}^{\infty}{A_{k}\cos(k \omega t)} \\
++ \sum_{k_{1}=1}^{\infty}{\sum_{k_{2}=1}^{\infty}{A_{k_{1}}A_{k_{2}}\cos(k_{1}\omega t)\cos(k_{2}\omega t)}} 
+\label{}
+\end{multline}
+
+Ou les $A_{k}$ ont été donnés au point précédent.
+
+Pour le terme d'ordre trois, il faut considérer tous les triplets de coefficients possibles avec $A_{0}$, $A_{k}$ et $B_{k}$. Chaque triplet fera alors référence à un terme dans le développement en série.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
